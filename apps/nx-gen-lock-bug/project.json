@@ -1,0 +1,50 @@
+{
+  "name": "nx-gen-lock-bug",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/nx-gen-lock-bug/src",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "nx-gen-lock-bug:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "nx-gen-lock-bug:build:development"
+        },
+        "production": {
+          "buildTarget": "nx-gen-lock-bug:build:production"
+        }
+      }
+    },
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/nx-gen-lock-bug",
+        "main": "apps/nx-gen-lock-bug/src/main.ts",
+        "tsConfig": "apps/nx-gen-lock-bug/tsconfig.app.json",
+        "assets": [
+          "apps/nx-gen-lock-bug/src/assets"
+        ],
+        "webpackConfig": "apps/nx-gen-lock-bug/webpack.config.js",
+        "isolatedConfig": true
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "generatePackageJson": true,
+          "inspect": false
+        }
+      }
+    }
+  },
+  "tags": []
+}
